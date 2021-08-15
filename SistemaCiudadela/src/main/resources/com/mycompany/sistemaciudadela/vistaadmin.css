@@ -1,0 +1,9 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+#panelAdmin{
+    -fx-background-image: url('mapita.jpg');
+    -fx-background-size: 50% 100%;
+}
+

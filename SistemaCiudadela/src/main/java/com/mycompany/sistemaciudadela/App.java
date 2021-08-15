@@ -21,7 +21,7 @@ public class App extends Application {
             FXMLLoader fxmlLoader
                     =new FXMLLoader(App.class.getResource("VistaPrincipal.fxml"));
             Parent root=fxmlLoader.load();
-            scene = new Scene(root, 700, 600);
+            scene = new Scene(root, 700, 400);
             stage.setScene(scene);
             stage.show();
                     
