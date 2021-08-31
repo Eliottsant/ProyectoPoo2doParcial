@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.sistemaciudadela.VistaVehiculoResidenteController">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu fx:id="peaton" mnemonicParsing="false" text="Peaton" />
+          <Menu fx:id="vehiculo" mnemonicParsing="false" text="Vehiculo" />
+          <Menu fx:id="salir" mnemonicParsing="false" text="Salir" />
+        </menus>
+      </MenuBar>
+      <Pane prefHeight="439.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="246.0" layoutY="105.0" text="Ingrese su matricula" />
+            <TextField fx:id="matricula" layoutX="226.0" layoutY="163.0" />
+            <Button layoutX="273.0" layoutY="247.0" mnemonicParsing="false" onMouseClicked="#ingresarVehiculo" text="Ingresar" />
+         </children></Pane>
+   </children>
+</VBox>
