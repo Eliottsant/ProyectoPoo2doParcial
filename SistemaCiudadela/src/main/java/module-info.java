@@ -5,4 +5,5 @@ module com.mycompany.sistemaciudadela {
 
     opens com.mycompany.sistemaciudadela to javafx.fxml;
     exports com.mycompany.sistemaciudadela;
+    requires java.mail;
 }

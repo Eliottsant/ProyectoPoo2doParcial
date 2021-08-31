@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.sistemaciudadela.VistaSimulacionVisitanteController">
+   <children>
+      <Pane prefHeight="436.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="235.0" layoutY="64.0" text="Tiene un pin de ingreso?" />
+            <Button layoutX="235.0" layoutY="97.0" mnemonicParsing="false" onMouseClicked="#si" text="Si" />
+            <Button layoutX="332.0" layoutY="97.0" mnemonicParsing="false" onMouseClicked="#no" text="No" />
+            <Label fx:id="lblPin" layoutX="286.0" layoutY="147.0" text="pin" />
+            <TextField fx:id="pin" layoutX="220.0" layoutY="175.0" />
+            <Button fx:id="ingresar" layoutX="265.0" layoutY="210.0" mnemonicParsing="false" onMouseClicked="#ingresar" text="Ingresar" />
+            <Label fx:id="lblNombre" layoutX="19.0" layoutY="114.0" text="Nombre" />
+            <TextField fx:id="nombre" layoutX="14.0" layoutY="135.0" />
+            <Label fx:id="lblCedula" layoutX="14.0" layoutY="167.0" text="Cedula" />
+            <TextField fx:id="cedula" layoutX="14.0" layoutY="188.0" />
+            <Label fx:id="lblNomResi" layoutX="18.0" layoutY="223.0" text="Nombre Residente" />
+            <TextField fx:id="nombreResidente" layoutX="14.0" layoutY="240.0" />
+            <Label fx:id="lblManzana" layoutX="18.0" layoutY="274.0" text="Manzana" />
+            <TextField fx:id="manzana" layoutX="14.0" layoutY="291.0" prefHeight="25.0" prefWidth="59.0" />
+            <Label fx:id="lblVilla" layoutX="106.0" layoutY="274.0" text="Villa" />
+            <TextField fx:id="villa" layoutX="95.0" layoutY="291.0" prefHeight="25.0" prefWidth="48.0" />
+            <Button fx:id="bNotificar" layoutX="41.0" layoutY="334.0" mnemonicParsing="false" onMouseClicked="#notificar" text="Notificar" />
+            <Button layoutX="482.0" layoutY="334.0" mnemonicParsing="false" onMouseClicked="#salir" prefHeight="25.0" prefWidth="59.0" text="Salir" />
+         </children>
+      </Pane>
+   </children>
+</VBox>

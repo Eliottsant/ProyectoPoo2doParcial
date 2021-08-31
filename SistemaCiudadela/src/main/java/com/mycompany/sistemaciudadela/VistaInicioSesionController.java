@@ -5,9 +5,11 @@
  */
 package com.mycompany.sistemaciudadela;
 
+import com.mycompany.sistemaciudadela.modelo.Residente;
 import com.mycompany.sistemaciudadela.modelo.Usuario;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -30,6 +32,7 @@ public class VistaInicioSesionController implements Initializable {
     private TextField nomUsu;
     @FXML
     private TextField contra;
+    private String nombre;
 
     /**
      * Initializes the controller class.
@@ -41,9 +44,9 @@ public class VistaInicioSesionController implements Initializable {
 
     @FXML
     private void inicioSesion(MouseEvent event) {
-        List<Usuario> usus = Usuario.cargarUsuarios();
-        for (Usuario u : usus) {
-            if (u.getUsername().equals("admin") && u.getContraseña().equals(contra.getText())) {
+        List<Residente> residentes = Residente.cargarResidentes();
+        for (Residente r : residentes) {
+            if (nomUsu.getText().equals("admin") && (contra.getText().equals("admin"))) {
                 try {
                     FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaAdmin.fxml"));
                     Parent viewAdmin = loader.load();
@@ -55,7 +58,10 @@ public class VistaInicioSesionController implements Initializable {
                     System.out.println("VistaAdmin.fxml");
 
                 }
-            } else if (u.getUsername().equals(nomUsu.getText()) && u.getContraseña().equals(contra.getText())) {
+            } else if (r.getUsername().equals(nomUsu.getText()) && r.getContraseña().equals(contra.getText())) {
+                r.registrarInfo(r.getNombre());
+                System.out.println(r.getNombre());
+
                 try {
                     FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaResidente.fxml"));
                     Parent viewAdmin = loader.load();
@@ -67,8 +73,6 @@ public class VistaInicioSesionController implements Initializable {
                     System.out.println("VistaResidente.fxml");
 
                 }
-            } else {
-                
             }
         }
     }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.sistemaciudadela.VistaSimulacionResidenteController">
+   <children>
+      <MenuBar fx:id="ResiMenu">
+         <menus>
+            <Menu fx:id="peaton" mnemonicParsing="false" text="Peaton" />
+            <Menu fx:id="vehiculo" mnemonicParsing="false" text="Vehiculo" />
+            <Menu fx:id="salir" mnemonicParsing="false" text="Salir" />
+         </menus>
+      </MenuBar>
+      <Pane prefHeight="423.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="271.0" layoutY="179.0" text="Residentes" />
+         </children>
+      </Pane>
+   </children>
+</VBox>

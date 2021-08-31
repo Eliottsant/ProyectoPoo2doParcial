@@ -19,7 +19,7 @@ import javafx.scene.input.MouseEvent;
  *
  * @author Eliot
  */
-public class VistaPrincipalController implements Initializable {
+public class VistaSimulacionController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -30,31 +30,31 @@ public class VistaPrincipalController implements Initializable {
     }    
 
     @FXML
-    private void inicioSesion(MouseEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaInicioSesion.fxml"));
+    private void residente(MouseEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaSimulacionResidente.fxml"));
             Parent viewInicioSesion = loader.load();
             App.setRoot(viewInicioSesion);
-            VistaInicioSesionController inicioSesionController
+            VistaSimulacionResidenteController SimulacionResidenteController
                     = loader.getController();
         } catch (IOException ex) {
             System.out.println("No se ha podido cargar la vista");
-            System.out.println("VistaRegistro.fxml");
+            System.out.println("VistaSimulacionResidente.fxml");
 
         }
     }
 
     @FXML
-    private void simulacion(MouseEvent event) {
-         try {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaSimulacion.fxml"));
+    private void visita(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaSimulacionVisitante.fxml"));
             Parent viewInicioSesion = loader.load();
             App.setRoot(viewInicioSesion);
-            VistaSimulacionController SimulacionController
+            VistaSimulacionVisitanteController SimulacionVisitanteController
                     = loader.getController();
         } catch (IOException ex) {
             System.out.println("No se ha podido cargar la vista");
-            System.out.println("VistaRegistro.fxml");
+            System.out.println("VistaSimulacionVisitante.fxml");
 
         }
     }

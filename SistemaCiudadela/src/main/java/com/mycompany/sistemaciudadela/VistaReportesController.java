@@ -6,7 +6,6 @@
 package com.mycompany.sistemaciudadela;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -18,39 +17,28 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
  *
  * @author Eliot
  */
-public class VistaAdminController implements Initializable {
+public class VistaReportesController implements Initializable {
 
-    @FXML
-    private Pane panelAdmin;
-    //@FXML
-    //private MenuBar menuAdmin;
     @FXML
     private Menu mapa;
     @FXML
-    private Menu cerrarSesion;
-    @FXML
-    private Menu reportes;
+    private Menu salir;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        MenuItem s = new MenuItem("Cerrar Sesion");
-        s.setOnAction(new EventHandler<ActionEvent>() {
+        MenuItem cs = new MenuItem("Cerrar Sesion");
+        cs.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
                 try {
                     FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaInicioSesion.fxml"));
@@ -65,9 +53,8 @@ public class VistaAdminController implements Initializable {
 
                 }
             }
-
         });
-        cerrarSesion.getItems().add(s);
+        salir.getItems().add(cs);
         MenuItem map = new MenuItem("Ver mapa");
         map.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent t) {
@@ -81,30 +68,43 @@ public class VistaAdminController implements Initializable {
                     Alert a = new Alert(AlertType.INFORMATION);
                     a.setContentText("Estamos teniendo dificultades tecnicas");
                     a.show();
+
                 }
             }
 
         });
         mapa.getItems().add(map);
-        MenuItem rep = new MenuItem("Ver reportes");
-        rep.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent t) {
-                try {
-                    FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaReportes.fxml"));
-                    Parent viewMapa = loader.load();
-                    App.setRoot(viewMapa);
-                    VistaReportesController reporteController
-                            = loader.getController();
-                } catch (IOException ex) {
-                    Alert a = new Alert(AlertType.INFORMATION);
-                    a.setContentText("Estamos teniendo dificultades tecnicas");
-                    a.show();
-
-                }
-
-            }
-        });
-        reportes.getItems().add(rep);
     }
 
+    @FXML
+    private void primerReporte(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaPrimerGrafico.fxml"));
+            Parent viewMapa = loader.load();
+            App.setRoot(viewMapa);
+            VistaPrimerGraficoController PrimerGraficoController
+                    = loader.getController();
+        } catch (IOException ex) {
+            Alert a = new Alert(AlertType.INFORMATION);
+            a.setContentText("Estamos teniendo dificultades tecnicas");
+            a.show();
+
+        }
+    }
+
+    @FXML
+    private void segundoReporte(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaSegundoGrafico.fxml"));
+            Parent viewMapa = loader.load();
+            App.setRoot(viewMapa);
+            VistaSegundoGraficoController SegundoGraficoController
+                    = loader.getController();
+        } catch (IOException ex) {
+            Alert a = new Alert(AlertType.INFORMATION);
+            a.setContentText("Estamos teniendo dificultades tecnicas");
+            a.show();
+
+        }
+    }
 }
