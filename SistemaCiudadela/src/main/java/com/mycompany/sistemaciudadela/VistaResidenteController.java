@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -90,8 +91,9 @@ public class VistaResidenteController implements Initializable {
                     VistaVisitasController visitasController
                             = loader.getController();
                 } catch (IOException ex) {
-                    System.out.println("No se ha podido cargar la vista");
-                    System.out.println("VistaVisitas.fxml");
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setContentText("Estamos teniendo dificultades tecnicas");
+                    a.show();
 
                 }
             }
@@ -108,9 +110,9 @@ public class VistaResidenteController implements Initializable {
                     VistaVehiculosController vehiculosController
                             = loader.getController();
                 } catch (IOException ex) {
-                    System.out.println("No se ha podido cargar la vista");
-                    System.out.println("VistaVehiculos.fxml");
-
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setContentText("Estamos teniendo dificultades tecnicas");
+                    a.show();
                 }
             }
 

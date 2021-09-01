@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -27,19 +28,20 @@ public class VistaSimulacionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void residente(MouseEvent event) {
-         try {
+        try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaSimulacionResidente.fxml"));
             Parent viewInicioSesion = loader.load();
             App.setRoot(viewInicioSesion);
             VistaSimulacionResidenteController SimulacionResidenteController
                     = loader.getController();
         } catch (IOException ex) {
-            System.out.println("No se ha podido cargar la vista");
-            System.out.println("VistaSimulacionResidente.fxml");
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("Estamos teniendo dificultades tecnicas");
+            a.show();
 
         }
     }
@@ -53,10 +55,27 @@ public class VistaSimulacionController implements Initializable {
             VistaSimulacionVisitanteController SimulacionVisitanteController
                     = loader.getController();
         } catch (IOException ex) {
-            System.out.println("No se ha podido cargar la vista");
-            System.out.println("VistaSimulacionVisitante.fxml");
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("Estamos teniendo dificultades tecnicas");
+            a.show();
 
         }
     }
-    
+
+    @FXML
+    private void volver(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaPrincipal.fxml"));
+            Parent viewInicioSesion = loader.load();
+            App.setRoot(viewInicioSesion);
+            VistaPrincipalController PrincipalController
+                    = loader.getController();
+        } catch (IOException ex) {
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("Estamos teniendo dificultades tecnicas");
+            a.show();
+
+        }
+    }
+
 }

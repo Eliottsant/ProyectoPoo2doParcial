@@ -190,7 +190,7 @@ public class VistaVisitasController implements Initializable {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(1500);
+                    Thread.sleep(1000);
                     Visita.enviarcorreo(v.getCorreo(), v.getPin());
                     try {
                         FXMLLoader loader = new FXMLLoader(App.class.getResource("VistaVisitas.fxml"));

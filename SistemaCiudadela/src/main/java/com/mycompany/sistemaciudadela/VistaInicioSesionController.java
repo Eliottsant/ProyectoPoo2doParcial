@@ -69,9 +69,9 @@ public class VistaInicioSesionController implements Initializable {
                     VistaResidenteController residenteController
                             = loader.getController();
                 } catch (IOException ex) {
-                    System.out.println("No se ha podido cargar la vista");
-                    System.out.println("VistaResidente.fxml");
-
+                    Alert a = new Alert(AlertType.INFORMATION);
+                    a.setContentText("Estamos teniendo dificultades tecnicas");
+                    a.show();
                 }
             }
         }
@@ -86,8 +86,9 @@ public class VistaInicioSesionController implements Initializable {
             VistaPrincipalController principalController
                     = loader.getController();
         } catch (IOException ex) {
-            System.out.println("No se ha podido cargar la vista");
-            System.out.println("VistaPrincipal.fxml");
+            Alert a = new Alert(AlertType.INFORMATION);
+            a.setContentText("Estamos teniendo dificultades tecnicas");
+            a.show();
 
         }
     }

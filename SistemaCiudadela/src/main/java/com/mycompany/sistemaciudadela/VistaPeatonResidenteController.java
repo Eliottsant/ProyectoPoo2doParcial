@@ -58,8 +58,9 @@ public class VistaPeatonResidenteController implements Initializable {
                     VistaPrincipalController principalController
                             = loader.getController();
                 } catch (IOException ex) {
-                    System.out.println("No se ha podido cargar la vista");
-                    System.out.println("VistaRegistro.fxml");
+                    Alert a = new Alert(AlertType.INFORMATION);
+                    a.setContentText("Estamos teniendo dificultades tecnicas");
+                    a.show();
 
                 }
             }
@@ -75,8 +76,9 @@ public class VistaPeatonResidenteController implements Initializable {
                     VistaVehiculoResidenteController principalController
                             = loader.getController();
                 } catch (IOException ex) {
-                    System.out.println("No se ha podido cargar la vista");
-                    System.out.println("VistaVehiculoResidente.fxml");
+                    Alert a = new Alert(AlertType.INFORMATION);
+                    a.setContentText("Estamos teniendo dificultades tecnicas");
+                    a.show();
 
                 }
             }

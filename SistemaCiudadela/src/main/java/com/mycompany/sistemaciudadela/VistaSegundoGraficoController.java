@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -68,8 +69,9 @@ public class VistaSegundoGraficoController implements Initializable {
             VistaReportesController ReportesController
                     = loader.getController();
         } catch (IOException ex) {
-            System.out.println("No se ha podido cargar la vista");
-            System.out.println("VistaRegistro.fxml");
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("Estamos teniendo dificultades tecnicas");
+            a.show();
 
         }
     }

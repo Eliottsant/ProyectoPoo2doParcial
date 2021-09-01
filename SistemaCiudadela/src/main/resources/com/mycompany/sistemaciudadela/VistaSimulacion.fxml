@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.sistemaciudadela.VistaSimulacionController">
    <children>
       <Pane prefHeight="451.0" prefWidth="600.0">
@@ -13,6 +12,7 @@
             <Label layoutX="271.0" layoutY="95.0" text="Simulacion" />
             <Button alignment="CENTER" layoutX="236.0" layoutY="157.0" mnemonicParsing="false" onMouseClicked="#residente" prefHeight="25.0" prefWidth="128.0" text="Residente" />
             <Button layoutX="236.0" layoutY="257.0" mnemonicParsing="false" onMouseClicked="#visita" prefHeight="25.0" prefWidth="128.0" text="Visita" />
+            <Button layoutX="506.0" layoutY="328.0" mnemonicParsing="false" onMouseClicked="#volver" text="Volver" />
          </children>
       </Pane>
    </children>

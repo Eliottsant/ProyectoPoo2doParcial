@@ -97,6 +97,9 @@ public class VistaMapaController implements Initializable {
                 Image img = new Image(input, 60, 60, true, true);
                 imgview = new ImageView(img);
             } catch (NullPointerException | IOException ex) {
+                Alert a = new Alert(AlertType.INFORMATION);
+                a.setContentText("Estamos teniendo dificultades tecnicas");
+                a.show();
 
                 imgview = new ImageView();
             }
@@ -127,7 +130,7 @@ public class VistaMapaController implements Initializable {
                 correo.setDisable(false);
                 genero.setDisable(false);
                 boton.setDisable(false);
-                selec.setText("Casa Seleccionada: "+r.getVilla());
+                selec.setText("Casa Seleccionada: " + r.getVilla());
                 casaSeleccionada = r;
             };
             casa.setOnMouseClicked(eventHandler);
@@ -153,8 +156,9 @@ public class VistaMapaController implements Initializable {
                     VistaInicioSesionController principalController
                             = loader.getController();
                 } catch (IOException ex) {
-                    System.out.println("No se ha podido cargar la vista");
-                    System.out.println("VistaRegistro.fxml");
+                    Alert a = new Alert(AlertType.INFORMATION);
+                    a.setContentText("Estamos teniendo dificultades tecnicas");
+                    a.show();
 
                 }
             }
@@ -170,8 +174,9 @@ public class VistaMapaController implements Initializable {
                     VistaReportesController reporteController
                             = loader.getController();
                 } catch (IOException ex) {
-                    System.out.println("No se ha podido cargar la vista");
-                    System.out.println("VistaReportes.fxml");
+                    Alert a = new Alert(AlertType.INFORMATION);
+                    a.setContentText("Estamos teniendo dificultades tecnicas");
+                    a.show();
 
                 }
 
@@ -205,8 +210,9 @@ public class VistaMapaController implements Initializable {
                                     VistaMapaController mapaController
                                             = loader.getController();
                                 } catch (IOException ex) {
-                                    System.out.println("No se ha podido cargar la vista");
-                                    System.out.println("VistaMapa.fxml");
+                                    Alert a = new Alert(AlertType.INFORMATION);
+                                    a.setContentText("Estamos teniendo dificultades tecnicas");
+                                    a.show();
                                 }
                             } catch (InterruptedException ex) {
                                 ex.printStackTrace();
@@ -230,8 +236,9 @@ public class VistaMapaController implements Initializable {
                 VistaMapaController mapaController
                         = loader.getController();
             } catch (IOException ex) {
-                System.out.println("No se ha podido cargar la vista");
-                System.out.println("VistaMapa.fxml");
+                Alert r = new Alert(AlertType.INFORMATION);
+                r.setContentText("Estamos teniendo dificultades tecnicas");
+                r.show();
 
             }
         }
