@@ -11,6 +11,7 @@ import com.mycompany.sistemaciudadela.modelo.Visita;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -123,26 +124,38 @@ public class Residente extends Usuario {
     }
 
     public static List<Residente> cargarResidentes() {
-        String ruta = "residentes.txt";
         List<Residente> residentes = new ArrayList<>();
-        try ( InputStream input = App.class.getResource(ruta).openStream();  BufferedReader bf = new BufferedReader(
-                new InputStreamReader(input, "UTF-8"))) {
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        try {
+            archivo = new File("archivos/residentes.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
             String linea;
-            while ((linea = bf.readLine()) != null) {
+            while ((linea = br.readLine()) != null) {
                 String[] u = linea.split("-");
                 Residente r = new Residente(u[0], u[1], u[2], u[3], u[4], Integer.parseInt(u[7]), Integer.parseInt(u[8]), u[5], u[6]);
                 residentes.add(r);
             }
-        } catch (IOException ex) {
-            System.out.println("No se pudo cargar la info");
-            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
         }
+
         return residentes;
     }
 
     public void registrarInfo(String user) {
         try {
-            String ruta = "src/main/resources/com/mycompany/sistemaciudadela/user.txt";
+            String ruta = "archivos/user.txt";
             String contenido = user;
             File file = new File(ruta);
             // Si el archivo no existe es creado
@@ -160,15 +173,26 @@ public class Residente extends Usuario {
     }
 
     public static Residente verInfo() {
-        String ruta = "user.txt";
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
         String linea = null;
-        List<Residente> residentes = new ArrayList<>();
-        try ( InputStream input = App.class.getResource(ruta).openStream();  BufferedReader bf = new BufferedReader(
-                new InputStreamReader(input, "UTF-8"))) {
-            linea = bf.readLine();
-        } catch (IOException ex) {
-            System.out.println("No se pudo cargar la info");
-            ex.printStackTrace();
+        try {
+            archivo = new File("archivos/user.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+            linea = br.readLine();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
         }
         for (Residente r : cargarResidentes()) {
             if (r.getNombre().equals(linea)) {
@@ -181,7 +205,7 @@ public class Residente extends Usuario {
     public void borrarInfo() {
         try {
 
-            File archivo = new File("src/main/resources/com/mycompany/sistemaciudadela/user.txt");
+            File archivo = new File("archivo/user.txt");
             boolean estatus = archivo.delete();
             if (!estatus) {
                 System.out.println("Error no se ha podido eliminar el  archivo");
@@ -197,7 +221,7 @@ public class Residente extends Usuario {
         FileWriter f = null;
         PrintWriter p = null;
         try {
-            f = new FileWriter("src/main/resources/com/mycompany/sistemaciudadela/Vehiculos.txt", true);
+            f = new FileWriter("archivos/Vehiculos.txt", true);
             p = new PrintWriter(f);
             p.println(v.getMatricula());
         } catch (Exception e) {
@@ -215,13 +239,13 @@ public class Residente extends Usuario {
         }
     }
 
-    public static void registroGeneralVisitas(Visita v,String nombre) {
+    public static void registroGeneralVisitas(Visita v, String nombre) {
         FileWriter f = null;
         PrintWriter p = null;
         try {
-            f = new FileWriter("src/main/resources/com/mycompany/sistemaciudadela/visitas.txt", true);
+            f = new FileWriter("archivos/visitas.txt", true);
             p = new PrintWriter(f);
-            p.println(v.getNombre() + "/" + v.getCedula() + "/" + v.getCorreo() + "/" + "En proceso" + "/" + v.getPin() + "/" + v.getFecha()+"/"+nombre);
+            p.println(v.getNombre() + "/" + v.getCedula() + "/" + v.getCorreo() + "/" + "En proceso" + "/" + v.getPin() + "/" + v.getFecha() + "/" + nombre);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -236,30 +260,42 @@ public class Residente extends Usuario {
     }
 
     public static List<Visita> verVisitasTodas() {
-        String ruta = "visitas.txt";
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
         List<Visita> visitas = new ArrayList<>();
-
-        try ( InputStream input = App.class
-                .getResource(ruta).openStream();  BufferedReader bf = new BufferedReader(
-                new InputStreamReader(input, "UTF-8"))) {
+        try {
+            archivo = new File("archivos/visitas.txt");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
             String linea;
-            while ((linea = bf.readLine()) != null) {
+            while ((linea = br.readLine()) != null) {
                 System.out.println(linea);
                 String[] u = linea.split("/");
                 LocalDateTime fecha = LocalDateTime.parse(u[5]);
-                Visita v = new Visita(u[0], u[1], u[2], u[3], u[4], fecha,u[6]);
+                Visita v = new Visita(u[0], u[1], u[2], u[3], u[4], fecha, u[6]);
                 visitas.add(v);
             }
-        } catch (IOException ex) {
-            System.out.println("No se pudo cargar la info");
-            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
         }
+
         return visitas;
 
     }
-    public static void cambiarPin(String nombre,String pin){
+
+    public static void cambiarPin(String nombre, String pin) {
+        List<Residente> residentes = Residente.cargarResidentes();
         try {
-            File archivo = new File("src/main/resources/com/mycompany/sistemaciudadela/residentes.txt");
+            File archivo = new File("archivos/residentes.txt");
             boolean estatus = archivo.delete();
             if (!estatus) {
                 System.out.println("Error no se ha podido eliminar el  archivo");
@@ -269,7 +305,6 @@ public class Residente extends Usuario {
         } catch (Exception e) {
             System.out.println(e);
         }
-        List<Residente> residentes = Residente.cargarResidentes();
         List<Residente> resis = new ArrayList<>();
         for (Residente r : residentes) {
             if (r.getNombre().equals(nombre)) {
@@ -280,7 +315,7 @@ public class Residente extends Usuario {
             }
         }
         try {
-            String ruta = "src/main/resources/com/mycompany/sistemaciudadela/residentes.txt";
+            String ruta = "archivos/residentes.txt";
             File file = new File(ruta);
             // Si el archivo no existe es creado
             if (!file.exists()) {
@@ -292,7 +327,7 @@ public class Residente extends Usuario {
         FileWriter fichero = null;
         PrintWriter pw = null;
         try {
-            fichero = new FileWriter("src/main/resources/com/mycompany/sistemaciudadela/residentes.txt");
+            fichero = new FileWriter("archivos/residentes.txt");
             pw = new PrintWriter(fichero);
 
             for (Residente rs : resis) {

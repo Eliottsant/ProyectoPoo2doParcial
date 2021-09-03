@@ -1,9 +1,12 @@
 com\mycompany\sistemaciudadela\VistaMapaController$3.class
 com\mycompany\sistemaciudadela\VistaSimulacionVisitanteController.class
+com\mycompany\sistemaciudadela\Launcher.class
 com\mycompany\sistemaciudadela\modelo\Usuario.class
 com\mycompany\sistemaciudadela\VistaSimulacionResidenteController$2.class
+com\mycompany\sistemaciudadela\VistaSegundoGraficoController.class
 com\mycompany\sistemaciudadela\VistaAdminController.class
 com\mycompany\sistemaciudadela\modelo\Delta.class
+com\mycompany\sistemaciudadela\VistaPrimerGraficoController.class
 com\mycompany\sistemaciudadela\VistaPeatonResidenteController.class
 com\mycompany\sistemaciudadela\App.class
 com\mycompany\sistemaciudadela\VistaPeatonResidenteController$1.class
@@ -49,6 +52,7 @@ com\mycompany\sistemaciudadela\VistaVisitasController$1.class
 com\mycompany\sistemaciudadela\VistaInformacionController$3.class
 com\mycompany\sistemaciudadela\VistaSimulacionResidenteController.class
 com\mycompany\sistemaciudadela\modelo\Administrador$5.class
+com\mycompany\sistemaciudadela\VistaVisitasController$10.class
 com\mycompany\sistemaciudadela\VistaInformacionController$1.class
 com\mycompany\sistemaciudadela\VistaReportesController.class
 com\mycompany\sistemaciudadela\VistaResidenteController$3.class

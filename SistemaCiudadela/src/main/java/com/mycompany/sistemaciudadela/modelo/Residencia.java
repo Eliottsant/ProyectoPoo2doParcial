@@ -8,6 +8,8 @@ package com.mycompany.sistemaciudadela.modelo;
 import com.mycompany.sistemaciudadela.App;
 import com.mycompany.sistemaciudadela.modelo.Residente;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -73,24 +75,37 @@ public class Residencia {
     public void setResidente(String residente) {
         this.residente = residente;
     }
-    
 
     public static List<Residencia> cargarResidencias() {
-        String ruta = "residencias.txt";
+        String ruta = "archivos/residencias.txt";
         List<Residencia> residencias = new ArrayList<>();
-        try ( InputStream input = App.class.getResource(ruta).openStream();  BufferedReader bf = new BufferedReader(
-                new InputStreamReader(input, "UTF-8"))) {
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+
+        try {
+            archivo = new File(ruta);
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
             String linea;
-            while ((linea = bf.readLine()) != null) {
+            while ((linea = br.readLine()) != null) {
                 System.out.println(linea);
                 String[] u = linea.split("-");
-                Residencia r = new Residencia(Double.valueOf(u[0]), Double.valueOf(u[1]), Integer.parseInt(u[2]), Integer.parseInt(u[3]),u[4]);
+                Residencia r = new Residencia(Double.valueOf(u[0]), Double.valueOf(u[1]), Integer.parseInt(u[2]), Integer.parseInt(u[3]), u[4]);
                 residencias.add(r);
             }
-        } catch (IOException ex) {
-            System.out.println("No se pudo cargar la info");
-            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
         }
+
         return residencias;
     }
 }

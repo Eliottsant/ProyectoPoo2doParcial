@@ -99,8 +99,9 @@ public class Visita {
     public final void setEstado(String value) {
         estado.set(value);
     }
-    public SimpleStringProperty sfecha(){
-        SimpleStringProperty f= new SimpleStringProperty(fecha+"");
+
+    public SimpleStringProperty sfecha() {
+        SimpleStringProperty f = new SimpleStringProperty(fecha + "");
         return f;
     }
 
@@ -171,9 +172,10 @@ public class Visita {
     }
 
     public static void borrarVisitaGeneral(String visita) {
+        List<Visita> visitas = Residente.verVisitasTodas();
         try {
 
-            File archivo = new File("src/main/resources/com/mycompany/sistemaciudadela/visitas.txt");
+            File archivo = new File("archivo/visitas.txt");
             boolean estatus = archivo.delete();
             if (!estatus) {
                 System.out.println("Error no se ha podido eliminar el  archivo");
@@ -183,7 +185,6 @@ public class Visita {
         } catch (Exception e) {
             System.out.println(e);
         }
-        List<Visita> visitas = Residente.verVisitasTodas();
         List<Visita> visis = new ArrayList<>();
         for (Visita v : visitas) {
             if (v.getNombre().equals(visita)) {
@@ -192,7 +193,7 @@ public class Visita {
             }
         }
         try {
-            String ruta = "src/main/resources/com/mycompany/sistemaciudadela/visitas.txt";
+            String ruta = "archivos/visitas.txt";
             File file = new File(ruta);
             // Si el archivo no existe es creado
             if (!file.exists()) {
@@ -204,11 +205,11 @@ public class Visita {
         FileWriter fichero = null;
         PrintWriter pw = null;
         try {
-            fichero = new FileWriter("src/main/resources/com/mycompany/sistemaciudadela/visitas.txt");
+            fichero = new FileWriter("archivos/visitas.txt");
             pw = new PrintWriter(fichero);
 
             for (Visita vs : visis) {
-                pw.println(vs.getNombre() + "/" + vs.getCedula() + "/" + vs.getCorreo() + "/" + vs.getEstado() + "/" + vs.getPin() + "/" + vs.getFecha()+"/"+vs.getNombreResidente());
+                pw.println(vs.getNombre() + "/" + vs.getCedula() + "/" + vs.getCorreo() + "/" + vs.getEstado() + "/" + vs.getPin() + "/" + vs.getFecha() + "/" + vs.getNombreResidente());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -236,9 +237,10 @@ public class Visita {
     }
 
     public static void registrarEntrada(String pin) {
+        List<Visita> visitas = Residente.verVisitasTodas();
         try {
 
-            File archivo = new File("src/main/resources/com/mycompany/sistemaciudadela/visitas.txt");
+            File archivo = new File("archivos/visitas.txt");
             boolean estatus = archivo.delete();
             if (!estatus) {
                 System.out.println("Error no se ha podido eliminar el  archivo");
@@ -248,7 +250,6 @@ public class Visita {
         } catch (Exception e) {
             System.out.println(e);
         }
-        List<Visita> visitas = Residente.verVisitasTodas();
         List<Visita> visis = new ArrayList<>();
         for (Visita v : visitas) {
             if (v.getPin().equals(pin)) {
@@ -260,7 +261,7 @@ public class Visita {
             }
         }
         try {
-            String ruta = "src/main/resources/com/mycompany/sistemaciudadela/visitas.txt";
+            String ruta = "archivos/visitas.txt";
             File file = new File(ruta);
             if (!file.exists()) {
                 file.createNewFile();
@@ -271,11 +272,11 @@ public class Visita {
         FileWriter fichero = null;
         PrintWriter pw = null;
         try {
-            fichero = new FileWriter("src/main/resources/com/mycompany/sistemaciudadela/visitas.txt");
+            fichero = new FileWriter("archivos/visitas.txt");
             pw = new PrintWriter(fichero);
 
             for (Visita vs : visis) {
-                pw.println(vs.getNombre() + "/" + vs.getCedula() + "/" + vs.getCorreo() + "/" + vs.getEstado() + "/" + vs.getPin() + "/" + vs.getFecha()+"/"+vs.getNombreResidente());
+                pw.println(vs.getNombre() + "/" + vs.getCedula() + "/" + vs.getCorreo() + "/" + vs.getEstado() + "/" + vs.getPin() + "/" + vs.getFecha() + "/" + vs.getNombreResidente());
             }
         } catch (Exception e) {
             e.printStackTrace();

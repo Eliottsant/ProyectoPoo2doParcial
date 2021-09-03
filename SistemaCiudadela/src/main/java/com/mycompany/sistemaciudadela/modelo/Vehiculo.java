@@ -7,6 +7,8 @@ package com.mycompany.sistemaciudadela.modelo;
 
 import com.mycompany.sistemaciudadela.App;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -44,19 +46,33 @@ public class Vehiculo {
     }
 
     public static List<String> leerMatriculas() {
-        String ruta = "Vehiculos.txt";
+        String ruta = "archivos/Vehiculos.txt";
         List<String> matriculas = new ArrayList<>();
-        try ( InputStream input = App.class.getResource(ruta).openStream();  BufferedReader bf = new BufferedReader(
-                new InputStreamReader(input, "UTF-8"))) {
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+
+        try {
+            archivo = new File(ruta);
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
             String linea;
-            while ((linea = bf.readLine()) != null) {
-                System.out.println(linea);
+            while ((linea = br.readLine()) != null) {
                 matriculas.add(linea);
+                System.out.println(linea);
             }
-        } catch (IOException ex) {
-            System.out.println("No se pudo cargar la info");
-            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
         }
+
         return matriculas;
     }
 }

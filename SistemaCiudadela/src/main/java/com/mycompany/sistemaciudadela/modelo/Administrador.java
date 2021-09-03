@@ -9,6 +9,7 @@ import com.mycompany.sistemaciudadela.App;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,9 +40,10 @@ import javax.mail.internet.MimeMessage;
 public class Administrador {
 
     public static void agregarResidente(Residencia residencia, String nombre, Residente resi) {
+        List<Residencia> residencias = Residencia.cargarResidencias();
         try {
 
-            File archivo = new File("src/main/resources/com/mycompany/sistemaciudadela/residencias.txt");
+            File archivo = new File("archivos/residencias.txt");
             boolean estatus = archivo.delete();
             if (!estatus) {
                 System.out.println("Error no se ha podido eliminar el  archivo");
@@ -51,7 +53,6 @@ public class Administrador {
         } catch (Exception e) {
             System.out.println(e);
         }
-        List<Residencia> residencias = Residencia.cargarResidencias();
         List<Residencia> resis = new ArrayList<>();
         for (Residencia r : residencias) {
             if (r.getVilla() == residencia.getVilla()) {
@@ -62,7 +63,7 @@ public class Administrador {
             }
         }
         try {
-            String ruta = "src/main/resources/com/mycompany/sistemaciudadela/residencias.txt";
+            String ruta = "archivos/residencias.txt";
             File file = new File(ruta);
             // Si el archivo no existe es creado
             if (!file.exists()) {
@@ -74,7 +75,7 @@ public class Administrador {
         FileWriter fichero = null;
         PrintWriter pw = null;
         try {
-            fichero = new FileWriter("src/main/resources/com/mycompany/sistemaciudadela/residencias.txt");
+            fichero = new FileWriter("archivos/residencias.txt");
             pw = new PrintWriter(fichero);
 
             for (Residencia rs : resis) {
@@ -97,7 +98,7 @@ public class Administrador {
         FileWriter f = null;
         PrintWriter p = null;
         try {
-            f = new FileWriter("src/main/resources/com/mycompany/sistemaciudadela/residentes.txt", true);
+            f = new FileWriter("archivos/residentes.txt", true);
             p = new PrintWriter(f);
             p.println(resi.getNombre() + "-" + resi.getCedula() + "-" + resi.getCorreo() + "-" + resi.getGenero() + "-" + resi.getPin() + "-" + resi.getUsername() + "-" + resi.getContraseña() + "-" + resi.getManzana() + "-" + resi.getVilla());
         } catch (Exception e) {
@@ -205,7 +206,7 @@ public class Administrador {
         FileWriter f = null;
         PrintWriter p = null;
         try {
-            f = new FileWriter("src/main/resources/com/mycompany/sistemaciudadela/entradas.txt", true);
+            f = new FileWriter("archivos/entradas.txt", true);
             p = new PrintWriter(f);
             p.println(tipo + "-" + hora);
         } catch (Exception e) {
@@ -225,33 +226,52 @@ public class Administrador {
     }
 
     public static List<Integer> leerEntradas() {
-        String ruta = "entradas.txt";
+        String ruta = "archivos/entradas.txt";
         List<Integer> horas = new ArrayList<>();
-        try ( InputStream input = App.class.getResource(ruta).openStream();  BufferedReader bf = new BufferedReader(
-                new InputStreamReader(input, "UTF-8"))) {
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+
+        try {
+            archivo = new File(ruta);
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
             String linea;
-            while ((linea = bf.readLine()) != null) {
+            while ((linea = br.readLine()) != null) {
                 String[] u = linea.split("-");
                 String[] h = u[1].split(":");
                 horas.add(Integer.parseInt(h[0]));
-
             }
-        } catch (IOException ex) {
-            System.out.println("No se pudo cargar la info");
-            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
         }
+
         return horas;
     }
 
     public static List<Integer> leerEntradasVR() {
-        String ruta = "entradas.txt";
+        String ruta = "archivos/entradas.txt";
         List<Integer> tipos = new ArrayList<>();
-        try ( InputStream input = App.class.getResource(ruta).openStream();  BufferedReader bf = new BufferedReader(
-                new InputStreamReader(input, "UTF-8"))) {
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+
+        try {
+            archivo = new File(ruta);
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
             String linea;
             int r = 0;
             int v = 0;
-            while ((linea = bf.readLine()) != null) {
+            while ((linea = br.readLine()) != null) {
                 String[] u = linea.split("-");
                 if (u[0].equals("Residente")) {
                     r++;
@@ -261,15 +281,25 @@ public class Administrador {
             }
             tipos.add(r);
             tipos.add(v);
-        } catch (IOException ex) {
-            System.out.println("No se pudo cargar la info");
-            ex.printStackTrace();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
         }
+
         return tipos;
 
     }
 }
 
-class Delta {
-    double x, y;
-}
+    class Delta {
+
+        double x, y;
+    }
